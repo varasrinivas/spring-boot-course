@@ -1,0 +1,37 @@
+{
+  "id": "MXX",
+  "track": "TRACK_KEY",
+  "track_label": "Track Label",
+  "track_color": "#HEX",
+  "level": "Foundational|Intermediate|Advanced",
+  "title": "Module Title",
+  "subtitle": "One-sentence hook that makes the learner want to read further.",
+  "objectives": [
+    "Objective 1 — starts with a verb (Understand, Build, Configure, Implement)",
+    "Objective 2",
+    "Objective 3"
+  ],
+  "intro": "2–3 paragraphs introducing the module. Use <strong>bold</strong> for key terms. Reference the Prior Authorization domain. Explain WHY this topic matters before diving into HOW.",
+  "concepts": [
+    {
+      "title": "Concept 1 Title",
+      "body": "Explanation with <code>inline code</code> for class names, annotations, methods. Keep paragraphs short. Use the Prior Authorization domain for all examples.",
+      "visual": "mXX-visual-key",
+      "code": "// Java/Spring code example using Prior Authorization domain\n@RestController\n@RequestMapping(\"/api/prior-auths\")\npublic class PriorAuthController {\n    // ...\n}"
+    },
+    {
+      "title": "Concept 2 Title",
+      "body": "Explanation...",
+      "visual": "mXX-another-visual"
+    }
+  ],
+  "comingFrom": {
+    "java": "How you'd solve this in plain Java without Spring — e.g., manual servlet config, JDBC boilerplate, hand-rolled connection pools.",
+    "context": "What Spring automates and why — the value proposition mapped to what the learner already knows."
+  },
+  "keyTakeaways": [
+    "Takeaway 1 — concrete, not vague",
+    "Takeaway 2",
+    "Takeaway 3"
+  ]
+}

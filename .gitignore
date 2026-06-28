@@ -1,0 +1,5 @@
+# transient/debug artifacts
+scratchpad_check.js
+*.tmp
+*.log
+.DS_Store

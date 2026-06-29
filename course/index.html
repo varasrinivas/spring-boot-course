@@ -6066,6 +6066,8 @@ function renderSidebar(){
 function showModule(idx){
   currentIdx = idx;
   const m = MODS[idx];
+  // keep the URL hash in sync so any module is shareable / bookmarkable (e.g. …/#M21)
+  if(decodeURIComponent(location.hash).replace(/^#/,'').toUpperCase() !== m.id) location.hash = m.id;
   document.documentElement.style.setProperty('--accent', m.track_color);
   let html = `
     <div class="mod-header">
@@ -6134,8 +6136,21 @@ function highlightCode(code){
   );
 }
 
-// Boot
-showModule(0);
+// Deep-linking: map a #MXX fragment in the URL to a module index
+function moduleIdxFromHash(){
+  const id = decodeURIComponent(location.hash || '').replace(/^#/,'').toUpperCase();
+  return MODS.findIndex(m => m.id === id);
+}
+function goToHash(){
+  const i = moduleIdxFromHash();
+  const target = i >= 0 ? i : 0;
+  if(target !== currentIdx) showModule(target);
+}
+window.addEventListener('hashchange', goToHash);
+
+// Boot — honor a #MXX deep link if present, otherwise start at M00
+const _boot = moduleIdxFromHash();
+showModule(_boot >= 0 ? _boot : 0);
 </script>
 </body>
 </html>

@@ -92,6 +92,19 @@
     padding:20px 24px;margin-top:32px}
   .takeaways h3{font-family:var(--display);font-weight:600;font-size:1rem;margin-bottom:10px}
   .takeaways li{margin-bottom:6px}
+  .labs{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin-top:24px}
+  .labs h3{font-family:var(--display);font-weight:600;font-size:1rem;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+  .labs h3 .gh{width:18px;height:18px;opacity:.8}
+  .labs > p{font-size:.92rem;color:var(--muted);margin-bottom:14px}
+  .lab-links{display:flex;gap:12px;flex-wrap:wrap}
+  .lab-link{display:flex;align-items:center;gap:11px;flex:1;min-width:230px;text-decoration:none;
+    background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:12px 14px;
+    color:var(--ink);transition:border-color .15s,transform .15s}
+  .lab-link:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .lab-link svg.ic{width:20px;height:20px;flex-shrink:0;color:var(--accent)}
+  .lab-link b{font-size:.92rem;font-weight:600;display:block}
+  .lab-link small{font-size:.74rem;color:var(--muted);display:block;margin-top:1px}
+  .lab-link .arr{margin-left:auto;color:var(--muted);font-size:.9rem}
   .nav-buttons{display:flex;justify-content:space-between;margin-top:48px;padding-top:24px;
     border-top:1px solid var(--line)}
   .nav-btn{font-family:var(--mono);font-size:.85rem;background:none;border:1px solid var(--line);
@@ -6134,6 +6147,25 @@ function showModule(idx){
   if(m.keyTakeaways){
     html += `<div class="takeaways"><h3>Key Takeaways</h3><ul>${m.keyTakeaways.map(t=>`<li>${t}</li>`).join('')}</ul></div>`;
   }
+  // Hands-on labs (on GitHub)
+  const labBase = 'https://github.com/varasrinivas/spring-boot-course/blob/main/labs/';
+  const ghMark = '<svg class="gh" viewBox="0 0 16 16" fill="currentColor" role="img" aria-label="GitHub"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>';
+  html += `<div class="labs">
+    <h3>${ghMark}Hands-on Labs</h3>
+    <p>Two guided labs for ${m.id} on GitHub — open them in your IDE and work through with Claude Code.</p>
+    <div class="lab-links">
+      <a class="lab-link" href="${labBase}${m.id}-lab-understand.md" target="_blank" rel="noopener">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        <span class="txt"><b>Understand It</b><small>Conceptual walkthrough &amp; exercises</small></span>
+        <span class="arr">↗</span>
+      </a>
+      <a class="lab-link" href="${labBase}${m.id}-lab-build.md" target="_blank" rel="noopener">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+        <span class="txt"><b>Build It with AI</b><small>Hands-on coding with Claude Code</small></span>
+        <span class="arr">↗</span>
+      </a>
+    </div>
+  </div>`;
   // Mark complete button + nav
   const doneBtn = m.id!=='M00' ? `<button class="nav-btn" onclick="toggleComplete('${m.id}')" style="margin-top:16px">
     ${completed.has(m.id)?'✓ Completed — click to undo':'Mark as Complete'}</button>` : '';
